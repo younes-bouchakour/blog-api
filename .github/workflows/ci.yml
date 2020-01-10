@@ -1,0 +1,14 @@
+name: Tests
+
+on: [pull_request]
+
+jobs:
+  hadolint:
+    name: Check docker images (Hadolint)
+    runs-on: ubuntu-latest
+    container: hadolint/hadolint
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Checking image Best Practices
+        run: hadolint Dockerfile
