@@ -22,8 +22,8 @@ RUN chmod +x /usr/local/bin/docker-entrypoint
 
 WORKDIR /srv/api
 
-ENTRYPOINT ["docker-entrypoint"]
-CMD ["php-fpm"]
+#ENTRYPOINT ["docker-entrypoint"]
+#CMD ["php-fpm"]
 
 FROM base_php as php_dev
 
