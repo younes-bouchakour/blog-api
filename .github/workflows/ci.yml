@@ -25,4 +25,20 @@ jobs:
         run: composer install
       - name: Run unit tests
         run: bin/phpunit
+  deploy:
+    name: Deploy on heroku
+    runs-on: ubuntu-latest
+    needs:
+      - test_unit
+    steps:
+      - name: Source code
+        uses: actions/checkout@v2
+      - name: setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.x'
+      - name: install dpl
+        run: gem install dpl
+      - name: Deploy to heroku
+        run: dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
     
